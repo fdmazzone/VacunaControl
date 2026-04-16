@@ -178,7 +178,7 @@ Following \cite{A.F.Filippov512} we say that  $\bold{x}$ is a \emph{solution} of
 
 
 
-We note that if $u_i\in L^1([0,+\infty))$ then $\bold{f}$ is a Carathéodory function in the sense of \cite[p. 3]{A.F.Filippov512} on the domain $\Omega\times[0,+\infty)$, where $\Omega$ is an open and bounded subset of $\mathbb{R}^{2n}$. That means that $\bold{f}(\bold{x},t)$ is continuous in $\bold{x}$ for almost every $t\in[0,+\infty)$,  $\bold{f}(\bold{x},t)$ is measurable in $t$ for each $\bold{x}\in\Omega$ and that there exists a function $m\in L^1([0,+\infty))$ such that $|\bold{f}(\bold{x},t)|\leq m(t)$ for every $(\bold{x},t)\in \Omega\times[0,+\infty)$.   Consequently, we can apply the existence and uniqueness theory for Carathéodory equations \cite[Th. 1, p. 4, Th. 2, p. 5]{A.F.Filippov512}, \cite[Th. 1.1]{EarlA.Coddington236},  and conclude that for any $\bold{x}_0\in \Omega$ there exists a unique local solution of the  initial value problem \eqref{eq:sist_compact}  defined in some interval  $[0,\delta)$, $\delta>0$.  
+We note that if $u_i\in L^1([0,+\infty))$ then $\bold{f}$ is a Carathéodory function in the sense of \cite[p. 3]{A.F.Filippov512} on the domain $\Omega\times[0,+\infty)$, where $\Omega$ is an open and bounded subset of $\mathbb{R}^{2n}$. That means that $\bold{f}(\bold{x},t)$ is continuous in $\bold{x}$ for almost every $t\in[0,+\infty)$,  $\bold{f}(\bold{x},t)$ is measurable in $t$ for each $\bold{x}\in\Omega$ and that there exists a function $m\in L^1([0,+\infty))$ such that $|\bold{f}(\bold{x},t)|\leq m(t)$ for every $(\bold{x},t)\in \Omega\times[0,+\infty)$.   Consequently, we can apply the existence and uniqueness theory for Carathéodory equations \cite[Th. 1, p. 4, Th. 2, p. 5]{A.F.Filippov512}, \cite[Th. 1.1, Ch.2]{EarlA.Coddington236},  and conclude that for any $\bold{x}_0\in \Omega$ there exists a unique local solution of the  initial value problem \eqref{eq:sist_compact}  defined in some interval  $[0,\delta)$, $\delta>0$.
 
 
 
@@ -309,10 +309,9 @@ By last, suppose that for all $i\in\{1,2,\ldots,n\}$,  $S_i(0)\neq 0$ or $I_i(0)
 
 \subsection{Existence of endemic equilibrium}
 
+In this section, we study the existence of equilibria of the model \eqref{eq:ModeloSIR1}-\eqref{eq:ModeloSIR3} when no control strategies are implemented ($\bold{u}\equiv 0$).
 
-In this section we will study the existence of equilibria of model \eqref{eq:ModeloSIR1}-\eqref{eq:ModeloSIR3}  when no control strategies are implemented ($\bold{u}\equiv 0$). 
-
-Let us first recall the approach to the concept of the \emph{basic reproduction number} by means of the \emph{next generation matrix} (NGM). Following \cite{FredBrauer482} next generation matrix for our model  is obtained as follows.  We write $ \bold{f}_{\bold{I}}=\mathscr{F}-\mathscr{V}$, where $\mathscr{F}=\bold{S}\times \bold{\beta}\bold{I}$ and $\mathscr{V}=(\mu+\gamma)\bold{I}$ and calculate the Jacobian matrices of $\mathscr{F}$ and $\mathscr{V}$  at the disease-free equilibrium $\bold{I}=0$ and $\bold{S}=\bold{N}$. We denote by $F$ and $V$ respectively the aforementioned matrices. Then the  NGM is defined by $K=FV^{-1}$.  In the case under study in this section we have that
+Let us first recall the approach to the concept of the \emph{basic reproduction number} by means of the \emph{next generation matrix} (NGM). Following \cite{FredBrauer482}, the next generation matrix for our model is obtained as follows. We write $ \bold{f}_{\bold{I}}=\mathscr{F}-\mathscr{V}$, where $\mathscr{F}=\bold{S}\times \bold{\beta}\bold{I}$ and $\mathscr{V}=(\mu+\gamma)\bold{I}$, and calculate the Jacobian matrices of $\mathscr{F}$ and $\mathscr{V}$ with respect to $\bold{I}$ at the disease-free equilibrium $(\bold{S},\bold{I})=(\bold{N},0)$. We denote by $F$ and $V$ the corresponding matrices. Then the NGM is defined by $K=FV^{-1}$. In the case under study in this section, we have
 
  \begin{empheq}{equation*}
  K=FV^{-1}=\begin{pmatrix} \frac{N_1\beta_{11}}{\gamma+\mu} & \frac{N_1\beta_{12}}{\gamma+\mu} & \cdots & \frac{N_1\beta_{1n}}{\gamma+\mu} \\
@@ -321,99 +320,85 @@ Let us first recall the approach to the concept of the \emph{basic reproduction 
                           \frac{N_n\beta_{n1}}{\gamma+\mu} & \frac{N_n\beta_{n2}}{\gamma+\mu} & \cdots & \frac{N_n\beta_{nn}}{\gamma+\mu} \\
            \end{pmatrix}.
 \end{empheq}
-The $(i, j )$ entry of $K$  is the expected number of secondary infections
-in node $i$ produced by an individual initially in node $j$ (see \cite{FredBrauer482}).   The basic reproduction number $\mathscr{R}_0$ is introduced as the spectral radius of the matrix $K$, i.e. $\mathscr{R}_0=\rho(K)$, where $\rho(K)$ denotes  the maximum absolute value of the eigenvalues of $K$.  Observe that if the matrix $\beta$ is irreducible the same is true for the matrix $K$, therefore, from  Perron-Fronenius Theorem, we obtain that $\rho(K)$ is itself an eigenvalue. An important fact to remember is that when  $\mathscr{R}_0<1$ the disease-free equilibrium is locally asymptotically stable.
+The $(i, j)$ entry of $K$ is the expected number of secondary infections in node $i$ produced by an individual initially in node $j$ (see \cite{FredBrauer482}). The basic reproduction number $\mathscr{R}_0$ is defined as the spectral radius of the matrix $K$, i.e., $\mathscr{R}_0=\rho(K)$, where $\rho(K)$ denotes the maximum absolute value of the eigenvalues of $K$. Observe that if the matrix $\beta$ is irreducible, then the same is true for the matrix $K$; therefore, by the Perron-Frobenius Theorem, we obtain that $\rho(K)$ is itself an eigenvalue. An important fact to remember is that when $\mathscr{R}_0<1$, the disease-free equilibrium is locally asymptotically stable.
 
-
-In the following theorem we show conditions that ensure the occurrence of an endemic equilibrium, i.e. an equilibrium different from the disease-free equilibrium.
- 
+In the following theorem, we provide conditions that ensure the existence of an endemic equilibrium, i.e., an equilibrium different from the disease-free equilibrium.
 
 \begin{thm}
- Suppose that there exits $i\in \{1,2,\ldots,n\}$ such that
+ Suppose that there exists $i\in \{1,2,\ldots,n\}$ such that
  \begin{equation}\label{eq:condicion.equilibrio}
 A\sum_{j\neq i}K_{ij}N_j<(K_{ii}-1)N_i,
  \end{equation}
  where $A=1+\gamma/(\alpha+\mu)$. Then the system \eqref{eq:ModeloSIR1}-\eqref{eq:ModeloSIR3} has an endemic equilibrium.
 \end{thm}
-
 \begin{proof}
- We have to find a solution of
+ We must find a solution, with $\bold{I}\neq 0$, of
  \begin{empheq}[left=\empheqlbrace,right= \text{, $i=1,2,\ldots,n$}]{align*}
     0&=\mu N_i-S_{i} \sum\limits_{j=1}^{n} \beta_{i j} I_{j}-  \mu S_{i}+\alpha R_i \\
-    0&=S_{i} \sum\limits_{j=1}^{n} \beta_{i j} I_{j}-(\mu+\gamma) I_{i} \\ 
+    0&=S_{i} \sum\limits_{j=1}^{n} \beta_{i j} I_{j}-(\mu+\gamma) I_{i} \\
     0&=\gamma I_{i}-(\mu+\alpha) R_{i}
 \end{empheq}
-Summing the last two equations we obtain the first one, then it is sufficient to solve the second and third equations. If, in the second equation, we replace $S_i$ by $N_i-I_i-R_i$ and $R_i$ by $\frac{\gamma}{\mu+\alpha}I_i$ we get
+Summing the last two equations, we obtain the first one; thus, it is sufficient to solve the second and third equations. If, in the second equation, we replace $S_i$ by $N_i-I_i-R_i$ and $R_i$ by $\frac{\gamma}{\mu+\alpha}I_i$, we get
 \begin{equation}\label{eq:F(I)}
 \left(1+\frac{\gamma}{\alpha+\mu}\right)\sum_{j=1}^n\beta_{ij}I_jI_i-\sum_{j=1}^n\beta_{ij}I_jN_i+(\gamma+\mu)I_i=0,\ i=1,2,\ldots,n,
 \end{equation}
-which is a system of $n$ equations with $n$ unknowns (we assume $\bold{N}$ given).  We will use the Poincaré-Miranda Theorem, see \cite{PabloAmster218} Theorem 4.4. We define  $F:\mathbb{R}^n\to\mathbb{R}^n$   by means of the expression in the left-hand side of \eqref{eq:F(I)}. We will look for a zero of $F$ in the set  $\Omega=[0,N_1]\times \cdots\times [\epsilon,N_i]\times \cdots \times [0,N_n]$ for $\epsilon>0$ which we will specify later. Since $0\notin \Omega$, the zero of $F$ that we will find will be different from the disease-free equilibrium. 
+which is a system of $n$ equations with $n$ unknowns (we assume $\bold{N}$ given). We will use the Poincaré-Miranda Theorem, see \cite{PabloAmster218}, Theorem 4.4. We define $F:\mathbb{R}^n\to\mathbb{R}^n$ by means of the expression on the left-hand side of \eqref{eq:F(I)}. We will look for a zero of $F$ in the set $\Omega=[0,N_1]\times \cdots\times [\epsilon,N_i]\times \cdots \times [0,N_n]$ for $\epsilon>0$, which we will specify later. Since $0\notin \Omega$, the zero of $F$ that we will find will be different from the disease-free equilibrium.
 
-For simplicity, we denote  by $F_i(I_j=a)$ the result of replacing the  $I_j$ component by $a$ in the expression of $F_i$ while the other variables remain arbitrary. In order to see that the hypotheses of the Poincaré-Miranda theorem are satisfied, let us observe that a simple calculation shows that  $F_k(I_k=0)\leq 0 \leq F_k(I_k=N_k)$, $k=1,\ldots,n$. This fact is sufficient to apply the above theorem, but nothing prevents us from finding the disease-free equilibrium again. To overcome this problem, we make the following calculation
+For simplicity, we denote by $F_i(I_j=a)$ the result of replacing the $I_j$ component by $a$ in the expression of $F_i$, while the other variables remain arbitrary. In order to verify that the hypotheses of the Poincaré-Miranda Theorem are satisfied, observe that a simple calculation shows that $F_k(I_k=0)\leq 0 \leq F_k(I_k=N_k)$, $k=1,\ldots,n$. This fact is sufficient to apply the above-mentioned theorem, from which a zero of $F$ in $[0,N_1]\times \cdots\times [0,N_n]$ would be obtained. However, this does not exclude the possibility of obtaining the disease-free equilibrium. To overcome this issue, we perform the following calculation
 \begin{empheq}{multline*}
  F_i(I_i=\varepsilon)=A\beta_{ii}\varepsilon^2+ \left[A \sum_{j\neq i}^n\beta_{ij}I_j-\beta_{ii}+\gamma+\mu    \right]\varepsilon-\sum_{j\neq i}^n\beta_{ij}I_jN_i\\
  \leq A\beta_{ii}\varepsilon^2+ \left[A \sum_{j\neq i}^n\beta_{ij}N_j-\beta_{ii}N_i+\gamma+\mu    \right]\varepsilon\\
- \leq A\beta_{ii}\varepsilon^2+ (\gamma+\mu)\left[A \sum_{j\neq i}^n K_{ij}\frac{N_j}{N_i}-\beta_{ii}+1    \right]\varepsilon
+ \leq A\beta_{ii}\varepsilon^2+ (\gamma+\mu)\left[A \sum_{j\neq i}^n K_{ij}\frac{N_j}{N_i}-K_{ii}+1    \right]\varepsilon
  \end{empheq}
- Since the term in square brackets is negative, $ F_i(I_i=\varepsilon)$ will be negative for sufficiently small $\varepsilon$ and for all $I_j$ with $ j \neq i$. 
-
+Since the term in square brackets is negative, $F_i(I_i=\varepsilon)$ is negative for sufficiently small $\varepsilon$ and for all $I_j$ with $ j \neq i$.
+Thus, the hypotheses of the Poincaré-Miranda Theorem are satisfied on $\Omega$, which implies the existence of an endemic equilibrium.
 
 \end{proof}
 
 
 
-\begin{comentario} It is well known that the occurrence of endemic equilibria is related to the fact that $\mathscr{R}_0>1$ (see \cite[Ch. 3]{FredBrauer482}). We want to show that the condition \eqref{eq:condicion.equilibrio} ensures , in a sense, a similar statement.   If condition \eqref{eq:condicion.equilibrio} were true for all $i=1,\ldots,n$ , then the statement  (M${}_35$) of Theorem 2.3 in \cite{AbrahamBerman}  would be satisfied with $d_j=N_j$ and for the matrix $K-I_n$, where $I_n$ denotes the identity matrix of order $n$ (observe that condition \eqref{eq:condicion.equilibrio}  implies that  $K-I_n$ has  all positive diagonal elements).   Therefore,  Theorem 2.3 in \cite{AbrahamBerman} implies that every real eingevalue of $K-I$ is positive. In particular $\rho(K-I)=\rho(K)-1>0$. We conclude that $\mathscr{R}_0>1$.
- 
-\end{comentario}
-
-
 
 \subsection{The number of vaccines  for  $t\to +\infty$}
+In this section, we assume that the birth rate is equal to zero and the immunity period is infinite, i.e., $\mu=0$ and $\alpha=0$, respectively. The goal is to show that, in some sense, the number of vaccinated individuals at time $t$, $u_i(t)S_i(t)$, approaches zero as $t\to+\infty$ for any $i$, regardless of the vaccination campaign. For example, a very aggressive campaign, so that the vaccination rates $u_i$ are high, will imply that the number of susceptible individuals converges to zero fast enough so that the total number of vaccinated individuals $u_iS_i$ also tends to zero.
 
-In this section we will assume that the birth rate is equal to zero and the immunity period is infinite, i.e. $\mu=0$ and $\alpha=0$ respectively.
-The goal  is to show that, in some sense, the number of vaccinated individuals at time $t$, $u_i(t)S_i(t)$, approaches to zero as $t\to+\infty$  for any $i$. This regardless of the vaccination campaign. For example, a very aggressive campaign, so that the vaccination rate $u_i$ are high, will imply that the number of susceptible individuals converges to zero fast enough so that the total number of vaccinated $u_iS_i$ also tends to zero.
-
-What we have actually been able to prove is that certain regularizations of the functions $u_iS_i$ converge to zero at infinity. To state the result that we want to present, let us recall the concept of \emph{regularization} or \emph{approximation of identity}  \cite{EliasM.Stein120}. Let $\varphi$ be an  integrable function on $\mathbb{R}$ satisfying $\int_\mathbb{R}\varphi(t)dt=1$.  In this article we will only consider functions $\varphi$  with $\varphi(t)=0$ when $t\leq 0$ and $\varphi$ decreasing on $[0,+\infty)$. For $\gamma>0$, we set $\varphi_\gamma(t)=\gamma\varphi(\gamma t)$ and for any $f\in L^1(\mathbb{R})$ with $f(t)\equiv 0$ for $t<0$, we write
+What we have actually been able to prove is that certain regularizations of the functions $u_iS_i$ converge to zero at infinity. To state the result that we want to present, let us recall the concept of \emph{regularization} or \emph{approximation of the identity} \cite{EliasM.Stein120}. Let $\varphi$ be an integrable function on $\mathbb{R}$ satisfying $\int_\mathbb{R}\varphi(t)dt=1$. In this article, we only consider functions $\varphi$ such that $\varphi(t)=0$ when $t\leq 0$ and $\varphi$ is decreasing on $[0,+\infty)$. For $\delta>0$, we set $\varphi_\delta(t)=\delta\varphi(\delta t)$ and, for any $f\in L^1(\mathbb{R})$ with $f(t)\equiv 0$ for $t<0$, we write
 \[
- f_{\gamma}(t)=f\ast \varphi_\gamma (t):= \gamma\int_{-\infty}^\infty f(t-s)\varphi(\gamma s)ds= \gamma\int_0^t f(t-s)\varphi(\gamma s)ds. 
+ f_{\delta}(t)=f\ast \varphi_\delta (t):= \delta\int_{-\infty}^\infty f(t-s)\varphi(\delta s)ds= \delta\int_0^t f(t-s)\varphi(\delta s)ds.
 \]
 
-Then it is well known (see \cite{EliasM.Stein120})
-that $f_\gamma$ are continuous and  $f_\gamma\to f$  almost everywhere and in $L^p$-norm with $1\leq p<\infty$.  
+Then it is well known (see \cite{EliasM.Stein120}) that $f_\delta$ is continuous and $f_\delta\to f$ almost everywhere and in the $L^p$-norm with $1\leq p<\infty$.
 
 \begin{comentario}
- Suppose that $f\in L^\infty(\mathbb{R})$ and that there exists  $\lim_{t\to\infty}f(t)$.   Then, using the Lebesgue's dominated converge theorem we obtain
+ Suppose that $f\in L^\infty(\mathbb{R})$ and that there exists $\lim_{t\to\infty}f(t)$. Then, using the Lebesgue dominated convergence theorem, we obtain
 
  \begin{equation}\label{eq:lim-weak}
- \lim_{t\to\infty}f_\gamma(t) =\lim_{t\to\infty}f(t),
+ \lim_{t\to\infty}f_\delta(t) =\lim_{t\to\infty}f(t),
 \end{equation}
-i.e,  regularization preserves the limit at infinity.
+i.e., regularization preserves the limit at infinity.
 
-Nevertheless, the existence of the limit on the left hand side in equation \eqref{eq:lim-weak}   does not guarantee the existence of limit of $f(t)$ for $t\to\infty$. An example of this fact is shown in Appendix \ref{sec:apendice}.
+Nevertheless, the existence of the limit on the left-hand side in equation \eqref{eq:lim-weak} does not guarantee the existence of the limit of $f(t)$ as $t\to\infty$.
 \end{comentario}
 
-The following proposition to expresses the fact that  the  epidemic is extinguished when $t\to\infty$ and, in a certain sense, the total quantity of vaccines applied $ u_iS_i$ goes to zero when $t\to\infty$. 
+The following proposition expresses the fact that the epidemic is extinguished as $t\to\infty$ and, in a certain sense, the total quantity of vaccines applied $u_iS_i$ goes to zero as $t\to\infty$.
 
-We recall that $\mu=\alpha=0$ and that  the infection period is given by the quantity $\gamma^{-1}$.   
+We recall that $\mu=\alpha=0$ and that the infection period is given by the quantity $\gamma^{-1}$.
 
-\begin{prop} We consider the function $\varphi$ defined by  $\varphi(t)=e^{-t}$, when $t>0$ and $\varphi(t)=0$ otherwise. The regularized function $(u_iS_i)_\gamma$  of the total number of vaccines applied at $i$th node  per unit of time goes to zero when $t\to\infty$. More concretely
+\begin{prop} We consider the function $\varphi$ defined by $\varphi(t)=e^{-t}$ when $t>0$ and $\varphi(t)=0$ otherwise. The regularized function $(u_iS_i)_\gamma$ of the total number of vaccines applied at the $i$-th node per unit of time goes to zero as $t\to\infty$. More concretely
 \[
  \lim\limits_{t\to\infty}\gamma\int_0^t  u_i(s)S_i(s)
   e^{\gamma (s-t)}ds=I_i(\infty)=0.
 \]
 
- 
+
 \end{prop}
 
-\begin{proof} Adding equations \eqref{eq:ModeloSIRb1} and \eqref{eq:ModeloSIRb2} we obtain 
+\begin{proof} Adding equations \eqref{eq:ModeloSIRb1} and \eqref{eq:ModeloSIRb2}, we obtain
 \[
  (S_i+I_i)'=- u_iS_i-\gamma I_i\leq 0.
 \]
-Therefore  $S_i+I_i$ is a monotone non increasing function. Hence $\lim_{t\to\infty} (S_i+I_i)$ there exists. From \eqref{eq:ModeloSIRb1} the same considerations are true for function $S_i$. Consequently there exists $\lim_{t\to\infty} S_i(t)=:S_i(\infty)$. We deduce that there exists  $\lim_{t\to\infty} I_i(t)=:I_i(\infty)$. If $I_i(\infty)>0$, we could choose $t_0$ large enough for that $t\geq t_0$ implies $I_i(t)>I_i(\infty)/2=:a>0$. Then $(S_i(t)+I_i(t))'\leq -\gamma I_i(t)\leq -\gamma a$. This inequality implies that $S_i(t) +I_i(t)\to -\infty$, when $t\to\infty$, which is a contradiction. Consequently $I_i(\infty)=0$. 
+Therefore, $S_i+I_i$ is a monotone non-increasing function. Hence, $\lim_{t\to\infty} (S_i+I_i)$ exists. From \eqref{eq:ModeloSIRb1}, the same considerations apply to the function $S_i$. Consequently, there exists $\lim_{t\to\infty} S_i(t)=:S_i(\infty)$. We deduce that there exists $\lim_{t\to\infty} I_i(t)=:I_i(\infty)$. If $I_i(\infty)>0$, we could choose $t_0$ large enough such that $t\geq t_0$ implies $I_i(t)>I_i(\infty)/2=:a>0$. Then $(S_i(t)+I_i(t))'\leq -\gamma I_i(t)\leq -\gamma a$. This inequality implies that $S_i(t) +I_i(t)\to -\infty$ as $t\to\infty$, which is a contradiction. Consequently, $I_i(\infty)=0$.
 
- 
-From  \eqref{eq:eq_integralI} we obtain 
-
+From \eqref{eq:eq_integralI}, we obtain
 
 \[
 \begin{split}
@@ -423,28 +408,24 @@ From  \eqref{eq:eq_integralI} we obtain
 \right\}\\
 &= e^{-\gamma t}
  \left\{
-    I_i(0)-\int_0^t e^{\gamma s} \left[S'_i(s)+ u_i(s)S_i\right]ds 
+    I_i(0)-\int_0^t e^{\gamma s} \left[S'_i(s)+ u_i(s)S_i\right]ds
   \right\}\\
   &= e^{-\gamma t}
  \left\{
     I_i(0)-\int_0^t e^{\gamma s}   u_i(s)S_i(s)ds
-    -e^{\gamma t}S_i(t)+S_i(0)+\gamma\int_0^t e^{\gamma s} S_{i}(s) ds 
+    -e^{\gamma t}S_i(t)+S_i(0)+\gamma\int_0^t e^{\gamma s} S_{i}(s) ds
   \right\}\\
    &= e^{-\gamma t}\left(S_i(0)+ I_i(0)  \right)-S_i(t)
    +\gamma \int_0^t e^{\gamma (s-t)}S_{i}(s)ds+\int_0^t e^{\gamma (s-t)}   u_i(s)S_i(s)ds
  \end{split}
 \]
 
-The proof is completed by taking limit for $t\to\infty$ in previous identities and using \eqref{eq:lim-weak}. 
+The proof is completed by taking the limit as $t\to\infty$ in the previous identities and using \eqref{eq:lim-weak}.
 \end{proof}
-
-
-
-
 \section{Optimal control problem}
 Before developing the main results of this section, we introduce a more compact notation. The expression $\bold{a}\cdot\bold{b}$ will represent the usual dot product between $n$-dimensional vectors, $\bold{a}$ and $\bold{b}$ , and we will write $\bold{a}>0$ ($\geq$ ) to denote a vector with all positive (non-negative) components.
 
-In this section, we will study the problem of the optimal distribution of vaccines subject to a limited supply of them.  More precisely, given $T>0$, we consider the following Lagrange optimal control problem with mixed inequalities constraints:
+In this section, we will study the problem of the optimal distribution of vaccines subject to a limited supply of them. By an optimal campaign we mean one that minimizes the total number of infected individuals across all nodes accumulated over a time interval $[0,T]$.  More precisely, given $T>0$, we consider the following Lagrange optimal control problem with mixed inequalities constraints:
 
 \begin{equation}\label{OP:minim}
  \min\limits_{u}\int_0^T\sum_{i=1}^{n} I_{i}(t) d t, \tag{$OP_1$} 
