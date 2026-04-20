@@ -422,19 +422,22 @@ From \eqref{eq:eq_integralI}, we obtain
 
 The proof is completed by taking the limit as $t\to\infty$ in the previous identities and using \eqref{eq:lim-weak}.
 \end{proof}
-\section{Optimal control problem}
-Before developing the main results of this section, we introduce a more compact notation. The expression $\bold{a}\cdot\bold{b}$ will represent the usual dot product between $n$-dimensional vectors, $\bold{a}$ and $\bold{b}$ , and we will write $\bold{a}>0$ ($\geq$ ) to denote a vector with all positive (non-negative) components.
 
-In this section, we will study the problem of the optimal distribution of vaccines subject to a limited supply of them. By an optimal campaign we mean one that minimizes the total number of infected individuals across all nodes accumulated over a time interval $[0,T]$.  More precisely, given $T>0$, we consider the following Lagrange optimal control problem with mixed inequalities constraints:
+
+\section{Optimal control problem}
+Before developing the main results of this section, we introduce a more compact notation. The expression $\bold{a}\cdot\bold{b}$ will represent the usual dot product between the $n$-dimensional vectors $\bold{a}$ and $\bold{b}$, and we will write $\bold{a}>0$ (or $\bold{a}\geq 0$) to denote a vector with all positive (non-negative) components.
+
+In this section, we will study the problem of the optimal distribution of vaccines subject to a limited supply. By an optimal campaign we mean one that minimizes the total number of infected individuals across all nodes accumulated over the time interval $[0,T]$. More precisely, given $T>0$, we consider the following Lagrange optimal control problem with mixed inequality constraints:
+
 
 \begin{equation}\label{OP:minim}
  \min\limits_{u}\int_0^T\sum_{i=1}^{n} I_{i}(t) d t, \tag{$OP_1$} 
 \end{equation}
-subjet to:
+subject to:
  
 
 
-\noindent\textrm{a)} State variable equations
+\noindent\textrm{a)} State  equations
 
  \begin{align}
     \bold{S}'&=\bold{f}_{\bold{S}}(\bold{S},\bold{I},\bold{u})=\nu\bold{N}-\bold{S}\times (\bold{\beta}\bold{I}+\bold{u})-\nu\bold{S}-\alpha\bold{I},\tag{$OP_2$} \label{eq:OP_2}\\
@@ -446,7 +449,7 @@ subjet to:
 \begin{align}\label{OP:cond.inic}
  \bold{S}(0)=\bold{S}_0>0,\quad \bold{I}(0)=\bold{I}_0,\tag{$OP_4$} 
 \end{align}
-where $\bold{S}_0$ and $\bold{I}_0$ are known.
+where $\bold{S}_0$ and $\bold{I}_0$ are known vectors.
 
 
 \noindent\textrm{c)} Mixed inequalities constraints
@@ -467,18 +470,17 @@ We denote $\mathcal{U}(t,\bold{S}):=\{\bold{u}:\bold{u}\cdot \bold{S}\leq M(t)\ 
 
 
 
-The objective function in \eqref{OP:minim}
-represents $\gamma$ times the total amount of infections in the interval $[0,T]$. Therefore, we are minimizing the latter amount.
+The objective function in \eqref{OP:minim} represents $\gamma$ times the total number of infections over the interval $[0,T]$. Therefore, minimizing the objective function is equivalent to minimizing the latter quantity.
 
-The function $M(t)$, which is assumed continuous and greater then zero, has the meaning to being the rate of vaccine supply for the total population at time $t$ per unit of time. Then, the restriction \eqref{res:cant.de.vacunados} means that the total number of vaccines supplied in the network per unit of time does not exceed $M(t)$. 
+The function $M(t)$, which is assumed to be continuous and strictly positive, represents the vaccine supply rate for the total population at time $t$ per unit of time. Hence, constraint \eqref{res:cant.de.vacunados} means that the total number of vaccines distributed throughout the network per unit of time does not exceed $M(t)$.
 
 
 
 \section{Existence minimizers}
 
-In this Section, we prove that the problem \eqref{OP:minim}--\eqref{res:u>=0} satisfies the hypothesis of the \emph{Filippov-Cesari Theorem} (see \cite[Th. 9.3.i]{L.Cesari368}), and consequently  it has a solution. 
+In this section, we prove that the problem \eqref{OP:minim}--\eqref{res:u>=0} satisfies the hypotheses of the \emph{Filippov--Cesari Theorem} (see \cite[Th. 9.3.i]{L.Cesari368}) and, consequently, admits a solution.
 
-In what follows, we will use the notation introduced in \eqref{def:x} and  \eqref{def:func.fS.fY}. Additionally we consider the Lagrangian function 
+In what follows, we use the notation introduced in \eqref{def:x} and \eqref{def:func.fS.fY}. Additionally, we consider the Lagrangian function
 
 $$
 f_{0}\left(\bold{x}, \bold{u}, t\right)=\sum_{i=1}^{n} I_{i}(t).
@@ -489,36 +491,40 @@ The optimal control problem \eqref{OP:minim}--\eqref{res:u>=0} has a solution $(
 \end{thm}
 
 \begin{proof}
-First we observe that, since $0\leq S_i\leq N_i$, $0\leq I_i\leq N_i$ and $t\in [0,T]$ the domain of the time-state variables can be chosen as a compact set, which we denote by $A$. This fact verifies one of the hypotheses of the Theorem 9.3.i in \cite{L.Cesari368}. 
-Additionally,  we need to prove that the set $$ \mathcal{M}:=\left\{(t,\bold{x},\bold{u}): (t,\bold{x})\in A\ \text{and}\ \bold{u}\in \mathcal{U}(t,S)  \right\}  $$ is a compact set in the time-state-control variables space. This fact is true since, from \eqref{OP:cond.inic} and \eqref{eq:eq_integralS} we have that $S_i(t)\geq \delta>0$ for every $t\in [0,T]$, therefore $\mathcal{M}$ is a closed and bounded set, and hence a compact set. Finally, we need to establish that the set $$ \mathcal{Q}(t,\bold{x}):=\left\{(z_0,\bold{z})\in \mathbb{R}^{1+2n}:z_0\geq f_0(t,\bold{x},\bold{u}), \bold{z}=f(t,\bold{x},\bold{u}),\ \text{and}\ \bold{u}\in \mathcal{U}(t,S) \right\} $$
-is a convex set, and this is an immediate consequense of the fact that $f$ is a lineal function with respect to the control variable $\bold{u}$.
+First, we observe that since $0\leq S_i\leq N_i$, $0\leq I_i\leq N_i$, and $t\in[0,T]$, the domain of the time-state variables can be chosen as a compact set, which we denote by $A$. This verifies one of the hypotheses of Theorem 9.3.i in \cite{L.Cesari368}.
+
+Additionally, we need to prove that the set
+$$ \mathcal{M}:=\left\{(t,\bold{x},\bold{u}): (t,\bold{x})\in A\ \text{and}\ \bold{u}\in \mathcal{U}(t,\bold{S})  \right\}  $$ 
+is a compact set in the time-state-control variable space. This is true since, from \eqref{OP:cond.inic} and \eqref{eq:eq_integralS}, we have that $S_i(t)\geq \delta>0$ for every $t\in[0,T]$. Therefore, $\mathcal{M}$ is a closed and bounded set, and hence compact.
+
+Finally, we need to establish that the set $$ \mathcal{Q}(t,\bold{x}):=\left\{(z_0,\bold{z})\in \mathbb{R}^{1+2n}:z_0\geq f_0(t,\bold{x},\bold{u}), \bold{z}=f(t,\bold{x},\bold{u}),\ \text{and}\ \bold{u}\in \mathcal{U}(t,\bold{S}) \right\} $$
+is a convex set, and this is an immediate consequence of the fact that $f$ is a linear function with respect to the control variable $\bold{u}$.
 \end{proof}
 
 \section{Necessary conditions}\label{sec:nece}
 
-In this Section, we apply the Pontryagin Maximum Principle \cite[Th. 4.1]{A.Seierstad499}, \cite{hartl1995survey} for to  obtain necessary conditions  in order to $(\bold{x}^*,\bold{u}^*)=(\bold{S}^*,\bold{I}^*,\bold{u}^*)$ be a solution of the optimal problem  \eqref{OP:minim}--\eqref{res:u>=0}.  
+In this section, we apply the Pontryagin Maximum Principle \cite[Th. 4.1]{A.Seierstad499}, \cite{hartl1995survey} to obtain necessary conditions for $(\bold{x}^*,\bold{u}^*)=(\bold{S}^*,\bold{I}^*,\bold{u}^*)$ to be a solution of the optimal problem \eqref{OP:minim}--\eqref{res:u>=0}.
 
-As is well known the maximun principle involves the Hamiltonian formulation of the optimal problem. We consider \emph{adjoint variables},
+As is well known, the Maximun Principle involves the Hamiltonian formulation of the optimal problem. We consider \emph{adjoint variables},
 
-$$\bold{p}_S(t)=(p_{S1}(t),\ldots,p_{Sn}(t)) \ \text{and}\ \bold{p}_I(t)=(p_{I1}(t),\ldots,p_{In}(t))$$
+$$\bold{p}_\bold{S}(t)=(p_{S1}(t),\ldots,p_{Sn}(t)) \ \text{and}\ \bold{p}_\bold{I}(t)=(p_{I1}(t),\ldots,p_{In}(t))$$
 and the Hamiltonian function defined by
 \begin{empheq}{multline}\label{eq:hamiltoniano}
-\mathscr{H}(\bold{S},\bold{I},\bold{u},\bold{p}_S,\bold{p}_I)=
+\mathscr{H}(\bold{S},\bold{I},\bold{u},\bold{p}_\bold{S},\bold{p}_\bold{I})=
 -p_0 \sum_{i=1}^{n} I_{i}  
- +\bold{p}_{S}\cdot \bold{f}_{\bold{S}}(\bold{S},\bold{I},\bold{u})+ \bold{p}_I\cdot \bold{f}_{\bold{I}}(\bold{S},\bold{I},\bold{u}),
+ +\bold{p}_{\bold{S}}\cdot \bold{f}_{\bold{S}}(\bold{S},\bold{I},\bold{u})+ \bold{p}_\bold{I}\cdot \bold{f}_{\bold{I}}(\bold{S},\bold{I},\bold{u}),
 \end{empheq} 
-where $p_0\in\mathbb{R}$ is independent of $t$. It is necessary to introduce  new multipliers  $\bold{q}(t)=(q_0(t),q_1(t),\ldots,q_n(t))$ associated with \eqref{res:cant.de.vacunados}  and \eqref{res:u>=0} respectively and the  \emph{Lagrangian} or \emph{generalized Hamiltonian} $\mathscr{L}$ defined by
+where $p_0\in\mathbb{R}$ is independent of $t$. It is necessary to introduce  new multipliers  $\bold{q}(t)=(q_0(t),q_1(t),\ldots,q_n(t))$ associated with \eqref{res:cant.de.vacunados}  and \eqref{res:u>=0} respectively, and the  \emph{Lagrangian} or \emph{generalized Hamiltonian} $\mathscr{L}$ defined by
 \begin{empheq}{equation}\label{eq:lagrangiano_generalizado}
 \mathscr{L}(\bold{S},\bold{I},\bold{u},\bold{p}_S,\bold{p}_I,\bold{q})=\mathscr{H}(\bold{S},\bold{I},\bold{u},\bold{p}_S,\bold{p}_I)+(q_1(t),\ldots,q_n(t))\cdot \bold{u}-q_0 \bold{u}\cdot \bold{S}.
 \end{empheq} 
 
-We suppose that $(\bold{S}^*,\bold{I}^{*},  \bold{u}^{*})$ is a  solution of \eqref{eq:optimal_model}. From now on any function evaluated at  $(\bold{S}^*,\bold{I}^{*},  \bold{u}^{*})$  will be indicated with a $\ast$ as superscript.
+We suppose that $(\bold{S}^*,\bold{I}^{*},  \bold{u}^{*})$ is a  solution of \eqref{eq:optimal_model}. From now on any function evaluated at  $(\bold{S}^*,\bold{I}^{*},  \bold{u}^{*})$ will be indicated by a superscript $\ast$.
 
-We combine the restrictions in a vector valued function 
-$$\bold{h}(\bold{S},\bold{u},t)=(-\bold{u}\cdot \bold{S}+M(t),\bold{u}_1,\ldots, \bold{u}_n).$$
-Then, the constraints are expressed synthetically $\bold{h}\geq \bold{0}$, where order relations between vectors mean that these relations are given component by component. Following  to be able to apply the Maximum Principle  it is necessary that they satisfy the  
-According to \cite[Th. 4.1]{A.Seierstad499}, see also \cite{hartl1995survey}, in order to apply the maximum principle, the  constraint
-qualification condition must be satisfied. This condition  means that the gradients of the active constraints ( this is $ \{i :h_i=0\}$) are linearly. In our case, the following condition must be satisfied
+We combine the constraints in a vector valued function 
+
+$$\bold{h}(\bold{S},\bold{u},t)=(-\bold{u}\cdot \bold{S}+M(t),u_1,\ldots, u_n).$$
+Then, the constraints can be expressed compactly as $\bold{h}\geq \bold{0}$, where the order relation between vectors is understood componentwise. According to \cite[Th. 4.1]{A.Seierstad499} (see also \cite{hartl1995survey}), in order to apply the Maximum Principle, the constraint qualification condition must be satisfied. This condition means that the gradients of the active constraints (that is, those with indices $i$ such that $h_i=0$) are linearly independent. In our case, the following condition must be satisfied
 
 \begin{equation}\label{eq:cons_qua}
 n+1=
@@ -532,8 +538,8 @@ n+1=
                      \end{array}
                     \right]
 \end{equation}
-We note that if $-\bold{u}\cdot \bold{S}+M(t)\neq 0$ then then qualification condition follows inmediately. In the case that   $-\bold{u}\cdot \bold{S}+M(t)= 0$ (last constraint active) we can  prove  that  the matrix en the rhs of  \eqref{eq:cons_qua} can be row reduced to
-\begin{equation*}\label{eq:cons_qua}
+We note that if $-\bold{u}\cdot \bold{S}+M(t)\neq 0$, then the qualification condition follows immediately. In the case where $-\bold{u}\cdot \bold{S}+M(t)=0$ (the last constraint is active), we can prove that the matrix on the right-hand side of \eqref{eq:cons_qua} can be row-reduced to
+\begin{equation*}\label{eq:cons_qua1}
                     \left[
                     \begin{array}{c c c|c c c c }
                       1      & \cdots & 0      & u_1    & \cdots& 0 &  0       \\
@@ -545,16 +551,7 @@ We note that if $-\bold{u}\cdot \bold{S}+M(t)\neq 0$ then then qualification con
 \end{equation*}
 Since $-\bold{u}\cdot \bold{S}+M(t)= 0$, there is some $i$ with $u_iS_i\neq 0$. This implies that matrix has completed rank. 
 
-We are in a position to apply the maximum principle. First we observe 
-that in virtue of  equations (29), 
-(34) and (35c) in \cite[Th. 4.1]{A.Seierstad499} we can assume  that 
-$p_0=1$ in \eqref{eq:hamiltoniano}. On the other hand, we infer that 
-there exist
-functions $ \bold{p}^\ast_S,\bold{p}^\ast_I:[0,T]\to\mathbb{R}^n$
- and 
-\emph{multipliers} $\bold{q}:=(q_0(t),\bar{\bold{q}}(t)):=(q_0(t),\ldots,q_n(t))\in\mathbb{R}^{n+1}$ 
-such that  the following 
-conditions are satisfied
+We are now in a position to apply the Maximum Principle. First, we observe that, by virtue of equations (29), (34), and (35c) in \cite[Th. 4.1]{A.Seierstad499}, we may assume that $p_0=1$ in \eqref{eq:hamiltoniano}. On the other hand, we infer that there exist functions $\bold{p}^\ast_{\bold{S}},\bold{p}^\ast_{\bold{I}}:[0,T]\to\mathbb{R}^n$ and multipliers $\bold{q}:=(q_0(t),\bar{\bold{q}}(t)):=(q_0(t),\ldots,q_n(t))\in\mathbb{R}^{n+1}$ such that the following conditions are satisfied.
 
 \noindent 1.\emph{ Adjoint equations}
  
@@ -601,11 +598,11 @@ where $\bold{1}=(1,\ldots,1)\in\mathbb{R}^n$.
 \noindent 5.\emph{ Maximality. } For fix $t\in[0,T]$ and for 
 every $\bold{u}$ with  $\bold{h}(\bold{S}^\ast,\bold{u},t)\geq \bold{0}$\todo{Revisar por que en  \cite[Th. 1, p. 276]{A.Seierstad499} dice  $\bold{h}(\bold{S}^\ast,\bold{u},t)> \bold{0}$} we have
 \begin{empheq}{align}\label{eq:maximalidad}
-\mathscr{H}(\bold{S}^\ast,\bold{I}^\ast,\bold{u}^\ast,\bold{p}_S^\ast,\bold{p}_I^\ast)\geq 
-\mathscr{H}(\bold{S}^\ast,\bold{I}^\ast,\bold{u},\bold{p}_S^\ast,\bold{p}_I^\ast)
+\mathscr{H}(\bold{S}^\ast,\bold{I}^\ast,\bold{u}^\ast,\bold{p}_\bold{S}^\ast,\bold{p}_\bold{I}^\ast)\geq 
+\mathscr{H}(\bold{S}^\ast,\bold{I}^\ast,\bold{u},\bold{p}_\bold{S}^\ast,\bold{p}_\bold{I}^\ast)
 \end{empheq}
 
-From the fact that $\boldmath{h}(\boldmath{S},\boldmath{u},t)\geq 0$ and from \eqref{eq:rest-act} we have that if $u_j^\ast(t)\neq 0$ then $q_j(t)=0$. Thus, from \eqref{eq:L_critico}, $q_0S_j^*=-p_{Sj}S_j^*$ when $u_j\neq 0$. Therefore, since $S_j^*\neq  0$ (see Proposition \ref{propo:propagacion.en.la.red}), we can replace equation \eqref{eq:cons_adjS} by 
+From the fact that $\bold{h}(\bold{S},\bold{u},t)\geq 0$ and from \eqref{eq:rest-act} we have that if $u_j^\ast(t)\neq 0$ then $q_j(t)=0$. Thus, from \eqref{eq:L_critico}, $q_0S_j^*=-p_{Sj}S_j^*$ when $u_j\neq 0$. Therefore, since $S_j^*\neq  0$ (see Proposition \ref{propo:propagacion.en.la.red}), we can replace equation \eqref{eq:cons_adjS} by 
 \begin{empheq}{equation}\label{eq:cons_adjS.prima}
  \dot{\bold{p}}_{\bold{S}} 
     ={\bold{p}}_{\bold{S}} \times \left(\bold{\beta} \bold{I}^\ast +\nu\right) 
@@ -614,9 +611,9 @@ From the fact that $\boldmath{h}(\boldmath{S},\boldmath{u},t)\geq 0$ and from \e
 
 
 
-\begin{prop}\label{prop:cond_nec} We suppose that $(\bold{S}^*,\bold{I}^{*},  \bold{u}^{*})$ is a  solution of \eqref{eq:optimal_model}.  Let $F(t)\subset \{1,\ldots,n\}$  be the subset of indices defined by 
-$$j\in F(t) \Longleftrightarrow \bold{p}_{\bold{S}^\ast_j}(t) = p_{\text{min}}(t):=
-\min\{\bold{p}_{\bold{S}^\ast_1}(t),\ldots, \bold{p}_{\bold{S}^\ast_n}(t)\}.$$
+\begin{prop}\label{prop:cond_nec} We suppose that $(\bold{S}^*,\bold{I}^{*},  \bold{u}^{*})$ is a  solution of \eqref{OP:minim}--\eqref{res:u>=0}.  Let $F(t)\subset \{1,\ldots,n\}$  be the subset of indices defined by 
+$$j\in F(t) \Longleftrightarrow p_{S^\ast_j}(t) = p_{\text{min}}(t):=
+\min\{p_{S^\ast_1}(t),\ldots, p_{S^\ast_n}(t)\}.$$
 Then 
 \begin{equation}\label{eq:cond_cont}
      u^\ast_k(t)=0,\quad\text{for every } k\notin F(t).
@@ -630,7 +627,7 @@ We observe that the Hamiltonian can be written
  \mathscr{H}(\bold{S},\bold{I},\bold{u},\bold{p}_S,\bold{p}_I)= \mathscr{H}_0(\bold{S},\bold{I},\bold{p}_S,\bold{p}_I)-
  \bold{p}_{\bold{S}}\cdot (\bold{S}\times \bold{u}).
 \end{equation}
-Therefore  \eqref{eq:hamiltonian_afin} implies that for each $t\in[0,T]$ and for every $\bold{u}$ with  $\bold{u}\geq \bold{0}$ and $\bold{u}\cdot\bold{S}^\ast\leq M(t)$ we have
+Therefore  \eqref{eq:maximalidad} implies that for each $t\in[0,T]$ and for every $\bold{u}$ with  $\bold{u}\geq \bold{0}$ and $\bold{u}\cdot\bold{S}^\ast\leq M(t)$ we have
 \begin{equation}\label{eq:maximalidad2}
   \bold{p}_{\bold{S}}^\ast\cdot (\bold{S}^\ast\times \bold{u}^\ast)\leq  \bold{p}_{\bold{S}}^\ast\cdot (\bold{S}^\ast\times \bold{u}).
 \end{equation}
@@ -641,7 +638,7 @@ Since $\bold{u}=0$ is admissible we infer that $p_{\min}(t)\leq 0$.
 \]
 Choosing $u_j$ such that $j\in F(t)$, $u_jS_j=M$ and $u_i=0$ for every $i\neq j$ we obtain that $ \bold{p}_{\bold{S}}^\ast\cdot (\bold{S}^\ast\times \bold{u})= p_{\text{min}}(t) M.$ Consequently 
 \[
- \bold{p}_{\bold{S}}^\ast\cdot (\bold{S}^\ast\times \bold{u}^\ast)= p_{\text{min}}(t) M\leq p_{\text{min}}(t) \bold{S}^*\cdot \bold{u}^*.
+ \bold{p}_{\bold{S}}^\ast\cdot (\bold{S}^\ast\times \bold{u}^\ast)\leq p_{\text{min}}(t) M\leq p_{\text{min}}(t) \bold{S}^*\cdot \bold{u}^*.
 \]
 Hence
 \[
@@ -665,26 +662,26 @@ and since $S_i^*>0$ for every $i=1,\ldots,n$ we infer that if $k\notin F(t)$ the
 \subsection{Numerical methods}
 In this section, we propose a numerical method for solving the optimal control problem \eqref{OP:minim}--\eqref{res:u>=0}. We employ a direct method (see \cite{rao2009survey}) that transforms the problem  into a nonlinear programming problem, in which an objective function $J$ is minimized over a finite-dimensional space.
 
-In our case, this space consists of the values taken by an interpolation function $\bar{u}:[0,T]\to\mathbb{R}^n$ at a finite set of interpolation points, obtained by dividing the interval $[0,T]$ into a grid of equidistant points $\{t_0,\ldots,t_k\}$. Given an array $U\in\mathbb{R}^{k\times n}$ containing the interpolation values at the grid points, we compute the objective function $J(U)$ by following these steps.
+In our case, this space consists of the values taken by an interpolation function $\bar{u}:[0,T]\to\mathbb{R}^n$ at a finite set of interpolation points, obtained by dividing the interval $[0,T]$ into a grid of equidistant points ${t_0,\ldots,t_k}$. Given an array $U\in\mathbb{R}^{k\times n}$ containing the interpolation values at the grid points, we compute the objective function $J(U)$ by following these steps:
+
 \begin{enumerate}
- \item Finding  $\bar{u}$.
-  \item Solving the system \eqref{eq:ModeloSIRb1}-\eqref{eq:ModeloSIRb2}, expanded with the equation $J'=\gamma\sum I_j$, with $\bar{u}$ instead of $u$.
-  \item  Return $J(T)$.
+\item Find $\bar{u}$.
+\item Solve the system \eqref{eq:ModeloSIRb1}--\eqref{eq:ModeloSIRb2}, augmented with the equation $J'=\gamma\sum I_j$, using $\bar{u}$ instead of $u$.
+\item Return $J(T)$.
 \end{enumerate}
 
-The implementation of the constraints  is straightforward, it consists of verifying \eqref{res:cant.de.vacunados}  and \eqref{res:u>=0} at the interpolation points.
+The implementation of the constraints  is straightforward: it consists of verifying \eqref{res:cant.de.vacunados}  and \eqref{res:u>=0} at the interpolation points.
 
 The simulation was developed in Python, using functions and modules that implement algorithms (see \cite{2020SciPy-NMeth}) for solving ODEs (the \texttt{solver\_ivp} function from the \texttt{scipy.integrate} module) and for solving optimization problems with nonlinear constraints (the \texttt{minimize} function from the \texttt{scipy.optimize} module).
 
 
 
 
-A difficulty arises when applying numerical methods to solve the system \eqref{eq:OP_2}--\eqref{eq:OP_3}. When, for some $i$, $S_i$ approaches zero, it is possible that the corresponding immunization rate $u_i$ tends to infinity. As a result, the equations \eqref{eq:OP_2}--\eqref{eq:OP_3} exhibit characteristics of a stiff system, and conventional integrators may fail to solve them accurately. To address this issue, we impose an upper bound on the rates $u_i$ (specifically, $u_i\leq 5\gamma$), and we select a numerical method suitable for stiff problems. In particular, we use a fifth-order Radau IIA method (see \cite{ErnstHairer1546}).
+A difficulty arises when applying numerical methods to solve the system \eqref{eq:OP_2}--\eqref{eq:OP_3}. When, for some $i$, $S_i$ approaches zero, it is possible that the corresponding immunization rate $u_i$ tends to infinity. As a result,  equations \eqref{eq:OP_2}--\eqref{eq:OP_3} exhibit characteristics of a stiff system, and conventional integrators may fail to solve them accurately. To address this issue, we impose an upper bound on the rates $u_i$ (specifically, $u_i\leq 5\gamma$), and we select a numerical method suitable for stiff problems. In particular, we use a fifth-order Radau IIA method (see \cite{ErnstHairer1546}).
 
 
 
-Minimization algorithms require an initial guess. Starting with a good candidate is important.
-In our experiments we took as an initial guess a uniform vaccination policy, i.e. we spread the vaccines evenly so that each node is vaccinated at the same rate.
+Minimization algorithms require an initial guess, and starting from a good candidate is important. In our experiments, we used a uniform vaccination policy as the initial guess; that is, vaccines were distributed evenly so that each node was vaccinated at the same rate.
 
 The proposed algorithm was implemented on two metapopulations: a simple network comprising two nodes, and a two-dimensional $5\times 5$ lattice of nodes. Even for networks of relatively modest size, the method entails solving nonlinear programming problems in high-dimensional spaces. In the $5\times 5$ lattice case, for example, 30 interpolation points were employed, yielding an objective function that depends on 750 variables. Each evaluation of this function involves solving a nonlinear system of 51 equations. On a standard desktop computer, the complete computation required approximately five hours.
 
