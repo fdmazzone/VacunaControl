@@ -685,9 +685,9 @@ Minimization algorithms require an initial guess, and starting from a good candi
 
 The proposed algorithm was implemented on two metapopulations: a simple network comprising two nodes, and a two-dimensional $5\times 5$ lattice of nodes. Even for networks of relatively modest size, the method entails solving nonlinear programming problems in high-dimensional spaces. In the $5\times 5$ lattice case, for example, 30 interpolation points were employed, yielding an objective function that depends on 750 variables. Each evaluation of this function involves solving a nonlinear system of 51 equations. On a standard desktop computer, the complete computation required approximately five hours.
 
-\subsection{Two nodes experiment}
+\subsection{Two-node experiment}
 
-We use the parameters listed in the table \ref{tabla:2_nodos} and we assume that $I_1(0)=0.1N_1$ and $I_2(0)=0$.  We tested four of the constraint-friendly minimization algorithms implemented for the \texttt{minimize} function of the \texttt{scipy.optimize} module. These are Constrained  Optimization  by Linear Approximations (COBYLA), see \cite{powell1994direct} , Constrained  Optimization  by Quadratic Approximatios (COBYQA), see \cite{rago_thesis,razh_cobyqa}, Sequential Least Squares Quadratic Programming (SLSQP), see \cite{10.1145/192115.192124,kraft88}  and trust-constr which is a  trust-region algorithm for constrained optimization (see \cite{A.R.Conn1530}). The execution times for each of the different algorithms are shown in the table \ref{tabla:tiempos}.
+We use the parameters listed in Table \ref{tabla:2_nodos} and assume that $I_1(0)=0.1N_1$ and $I_2(0)=0$. We tested four constraint-compatible minimization algorithms implemented for the \texttt{minimize} function of the \texttt{scipy.optimize} module. These are Constrained Optimization by Linear Approximations (COBYLA), see \cite{powell1994direct}; Constrained Optimization by Quadratic Approximations (COBYQA), see \cite{rago_thesis,razh_cobyqa}; Sequential Least Squares Quadratic Programming (SLSQP), see \cite{10.1145/192115.192124,kraft88}; and \texttt{trust-constr}, which is a trust-region algorithm for constrained optimization (see \cite{A.R.Conn1530}). The execution times for each of these algorithms are shown in Table \ref{tabla:tiempos}.
 
 
 
@@ -708,7 +708,7 @@ We use the parameters listed in the table \ref{tabla:2_nodos} and we assume that
             Uniform    &     COBYLA     & COBYQA     &  SLSQP      &   trust-constr\\ \hline
             0.00 & 0.93 & 1.78 & 4.79 & 17.33  \\ \hline
         \end{tabular}
-\end{center}\caption{Execution times (minutes) for two nodes experiment} \label{tabla:tiempos}
+\end{center}\caption{Execution times (minutes) for the two-node experiment} \label{tabla:tiempos}
 
 \end{table}
 
@@ -748,164 +748,143 @@ We use the parameters listed in the table \ref{tabla:2_nodos} and we assume that
     \end{subfigure}
     \caption{Results two nodes experiment.}\label{fig:result_2x2}
 \end{figure}
-
-
-The results are displayed in graphical form in the Figures \ref{fig:resul2x1}--\ref{fig:vaccination_rates}.  In Figure \ref{fig:resul2x1}, we plot the acummulated number of infected $J$ versus $t$. All numerical optimization algorithms show comparable performance, improving upon the uniform vaccination policy. It can also be observed (see Figure \ref{fig:restric2x1}) that all algorithms satisfy the constraints to the same order of accuracy. Figures \ref{fig:adjoint} and \ref{fig:vaccination_rates} are consistent with Proposition \ref{prop:cond_nec}; that is, all available vaccine stock at time $t$ is administered at node $i$, where $P_{S_i}$ equals the minimum of the vector $\mathbf{p_S}$.
+The results are displayed graphically in Figures \ref{fig:resul2x1}--\ref{fig:vaccination_rates}. In Figure \ref{fig:resul2x1}, we plot the accumulated number of infected individuals, $J$, versus $t$. All numerical optimization algorithms show comparable performance, improving upon the uniform vaccination policy. It can also be observed (see Figure \ref{fig:restric2x1}) that all algorithms satisfy the constraints to a similar order of accuracy. Figures \ref{fig:adjoint} and \ref{fig:vaccination_rates} are consistent with Proposition \ref{prop:cond_nec}; that is, all available vaccine stock at time $t$ is administered at node $i$, where $p_{S_i}$ attains the minimum of the vector $\mathbf{p_S}$.
 
 
 
 
-\subsection{The experiment $5\times 5$ }
+\subsection{The $5\times 5$ experiment}
 
+To test the capabilities of our algorithm, we addressed a larger-scale problem by considering networks with a large number of nodes. This leads to minimization problems with many degrees of freedom. Even for modest values of $k$ and $n$ ($k$ being the number of interpolation points and $n$ the number of nodes), the space over which the objective function must be minimized becomes very high-dimensional and challenging.
 
+We consider a metapopulation network of $25$ nodes (identified with the set $D=\{(r,s)\mid r,s=1,\ldots,5\}$), arranged in a $5\times 5$ grid graph. In our model, individuals at node $(r,s)$ interact only with individuals at their nearest neighbors in the four cardinal directions (N, S, E, W). Naturally, nodes at the edges of the network have fewer neighbors. Nodes are indexed by $i=1,\ldots,25$, assigned from top to bottom and from left to right.
 
-To test the capabilities of our algorithm, we addressed a larger-scale problem by considering networks with a large number of nodes. This leads to minimization problems with many degrees of freedom. Even for modest values of $k$ and $n$ ($k$ being the number of interpolation points and $n$ the number of nodes), the space over which we must minimize the objective function becomes very high-dimensional and challenging. We consider a metapopulations network of $25$ nodes (indicated with the set  $D=\{(r,s) \mid r,s=1,\ldots,5\}$), arranged in a $5 \times 5$ grid graph. In our model, individuals at node $(r,s)$ interact only with individuals at their nearest neighbors in the four cardinal directions (N, S, E, W). Naturally, nodes at the edges of the network have fewer neighbors. Nodes are enumerated with indices $i = 1, \ldots, 25$, assigned from top to bottom and left to right.\todo{quedamos aca}
-
- If $i$ and $j$  are neighbors  we assume that $\beta_{ij}=0.08$. We propose the following formula for intranode infection rates
- $$\beta_{ii}=1.1\left(\frac{2}{(r-5)^2+(s-5)^2+1}+1 \right),$$
- where $i$ corresponds to node $(r,s)$. Note that the intra-node infection rates range from $1.16$ to $3.3$, with the maximum value attained at the bottom-right node.
-
-
- We assume that $N_{i}=1$ for every $i=1,\ldots,25$, $\gamma=1$, $\mu=0.01$, $\alpha=0.2$.
- Finally, we assume that initially only node $i = 1$ contains infected individuals, with a total number equal to $0.1$. The function $M(t)$ was assumed to be constant and equal to 5\% of the total population, i.e., $M(t) = 0.05 \sum_{i=1}^{25} N_i = 1.25$.
+If $i$ and $j$ are neighbors, we assume that $\beta_{ij}=0.08$. We propose the following formula for the intranode infection rates:
+\[
+\beta_{ii}=1.1\left(\frac{2}{(r-5)^2+(s-5)^2+1}+1\right),
+\]
+where $i$ corresponds to node $(r,s)$. Note that the intranode infection rates range from $1.16$ to $3.3$, with the maximum value attained at the bottom-right node.
+We assume that $N_i=1$ for every $i=1,\ldots,25$, $\gamma=1$, $\mu=0.01$, and $\alpha=0.2$. Finally, we assume that initially only node $i=1$ contains infected individuals, with a total number equal to $0.1$. The function $M(t)$ is assumed to be constant and equal to $5\%$ of the total population, that is,
+\[
+M(t)=0.05\sum_{i=1}^{25}N_i=1.25.
+\]
 
 As an initial guess, we adopt a uniform vaccination policy, where $u_j$ is independent of $j$, and set
- $$u_j(t)=\frac{M(t)}{\sum_{i=1}^{25}S_i(t)+\epsilon}.$$
-The epsilon parameter in the formula is introduced to prevent infinite vaccination rates. In the experiments, it was set to $0.001$.
+\[
+u_j(t)=\frac{M(t)}{\sum_{i=1}^{25}S_i(t)+\epsilon}.
+\]
+The parameter $\epsilon$ in the formula is introduced to prevent infinite vaccination rates. In the experiments, it was set to $0.001$.
 
+We present the results obtained with the \texttt{trust-constr} algorithm, since it was the only one that produced a perceptible improvement over the initial candidate. In Figure \ref{fig:5x5_J}, we plot the cumulative number of infected individuals corresponding to the two vaccination schemes: the uniform policy and the solution obtained with the \texttt{trust-constr} algorithm. We observe that the latter produces $8\%$ fewer infections over the interval $[0,T]$, relative to the total population.
 
+In Figure \ref{fig:5x5_restri}, we represent the total number of vaccinated individuals at time $t$, $\sum_{i=1}^{n}u_i(t)S_i(t)$, and observe that the result satisfies the constraint satisfactorily.
 
-We will show the results obtained with the trust-constr algorithm, since it was the only one that produced a perceptible improvement over the initial candidate. In Figure \ref{fig:5x5_J}, we plot the cumulative number of infectious individuals corresponding to the two vaccination schemes: uniform and the result obtained with the trust-constr algorithm. We observe that the latter produces 8\% fewer cases of infection over the interval $[0,T]$ relative to the total population.
-In Figure \ref{fig:5x5_restri}, we represent the total number of vaccinated individuals at time $t$, $\sum_{i=1}^nu_i(t)S_i(t)$, and observe that the result satisfactorily meets the restriction.
+To study whether the conclusion of Proposition \ref{prop:cond_nec} is satisfied, we define $i_t=\arg\min(\bold{p_S}(t))$, sort the vector $\bold{u}(t)$ from largest to smallest, and determine the position $j(t)$ occupied by $i_t$ in that ordered vector. According to Proposition 5.1, the value of $j(t)$ should be $1$. However, this does not occur, which indicates that the result produced by the algorithm is not a global minimum, but is presumably close to a local minimum. Nevertheless, we can observe a tendency for $j(t)$ to take small values. In Figure \ref{fig:5x5_chequeo}, we represent $j(t)$ and, with the orange line, its average value, which is equal to $6.24$.
 
-
-To study whether the conclusion of Proposition \ref{prop:cond_nec} is satisfied, we define $i_t=argmin(\bold{p_S}(t))$, we sort the vector $\bold{u}(t)$ from largest to smallest, and see what position, $j(t)$, occupies $i_t$  in that vector.  According to Proposition 5.1, the value of $j(t)$ should be 1. However, this does not occur, which is an indicator that the result of the algorithm is not an absolute minimum, but is presumably close to a local minimum. Nevertheless, we can observe a tendency for $j(t)$ to take small values. In Figure \ref{fig:5x5_chequeo}, we represent $j(t)$, and with the orange line the average value of $j(t)$, which is equal to $6.24$.
-
-
-Figures \ref{fig:figura_con_subfiguras} and \ref{fig:figura_con_subfiguras2} present density diagrams for the variables $I$ and $uS$ at various time steps $t$.
-
-
-
+Figures \ref{fig:figura_con_subfiguras} and \ref{fig:figura_con_subfiguras2} present density diagrams for the variables $\bold{I}$ and $\bold{u}\cdot\bold{S}$ at various time steps $t$.
 
 
 \begin{figure}[h!]
     \centering
-    % Fila 1
     \begin{subfigure}[t]{0.45\textwidth}
-           % \centering
         \includegraphics[scale=.4]{Imagenes/5x5-infeccion.png}
- % 5x5-infeccion.png: 640x480 px, 100dpi, 16.26x12.19 cm, bb=0 0 461 346
- \caption{Cumulative infected cases, for uniform and "optimal" vaccination}
- \label{fig:5x5_J}
-
-
+        \caption{Cumulative infected cases for uniform and ``optimal'' vaccination}
+        \label{fig:5x5_J}
     \end{subfigure}
-        \hfill
+    \hfill
     \begin{subfigure}[t]{0.45\textwidth}
-
- \includegraphics[scale=.4]{Imagenes/5x5-restriccion.png}
- % 5x5-restriccion.png: 640x480 px, 100dpi, 16.26x12.19 cm, bb=0 0 461 346
- \caption{Total vaccination}
- \label{fig:5x5_restri}
-
+        \includegraphics[scale=.4]{Imagenes/5x5-restriccion.png}
+        \caption{Total vaccination}
+        \label{fig:5x5_restri}
     \end{subfigure}
 \end{figure}
 
-
-
-\begin{figure}
- \includegraphics[scale=.6]{Imagenes/5x5-chequeo_teorema.png}
- \centering
- % 5x5-chequeo_teorema.png: 640x480 px, 100dpi, 16.26x12.19 cm, bb=0 0 461 346
- \caption{Graph of $j(t)$}
- \label{fig:5x5_chequeo}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=.6]{Imagenes/5x5-chequeo_teorema.png}
+    \caption{Graph of $j(t)$}
+    \label{fig:5x5_chequeo}
 \end{figure}
-
 
 \begin{figure}[htbp]
     \centering
-    % --- FILA 1 ---
+
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/I00Control.png}
-        \caption{Control $t=0$}
-        \label{fig:subfig2}
+        \caption{$t=0$}
+        \label{fig:subfigI1}
     \end{subfigure}
-    \hfill % Esto genera el espacio horizontal entre las dos fotos
+    \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/I03Control.png}
-        \caption{Control $t=9.0$}
-        \label{fig:subfig4}
+        \caption{$t=9.0$}
+        \label{fig:subfigI2}
     \end{subfigure}
 
-    \vspace{0.5cm} % Espacio vertical entre filas
+    \vspace{0.5cm}
 
-    % --- FILA 2 ---
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/I06Control.png}
-        \caption{Control $t=18.0$}
-        \label{fig:subfig6}
+        \caption{$t=18.0$}
+        \label{fig:subfigI3}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/I09Control.png}
-        \caption{Control $27.0$}
-        \label{fig:subfig8}
+        \caption{$t=27.0$}
+        \label{fig:subfigI4}
     \end{subfigure}
 
-    \caption{Evolution of the population of infected individuals in a  vaccination schedule  with optimal control.}
+    \caption{Evolution of the infected population under an optimal vaccination schedule.}
     \label{fig:figura_con_subfiguras}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    % --- Fila 1 ---
+
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/u*S00Control.png}
-        \caption{Control $t=0$}
-        \label{fig:subfig2}
+        \caption{$t=0$}
+        \label{fig:subfigU1}
     \end{subfigure}
-    \hfill % Empuja las imágenes a los extremos para que queden alineadas
+    \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/u*S03Control.png}
-        \caption{Control $t=9.0$}
-        \label{fig:subfig4}
+        \caption{$t=9.0$}
+        \label{fig:subfigU2}
     \end{subfigure}
 
-    \vspace{0.5cm} % Espacio vertical entre filas
+    \vspace{0.5cm}
 
-    % --- Fila 2 ---
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/u*S06Control.png}
-        \caption{Control $t=18.0$}
-        \label{fig:subfig6}
+        \caption{$t=18.0$}
+        \label{fig:subfigU3}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Imagenes/u*S09Control.png}
-        \caption{Control $t=27.0$}
-        \label{fig:subfig8}
+        \caption{$t=27.0$}
+        \label{fig:subfigU4}
     \end{subfigure}
 
-    \caption{Distribution of vaccines in the network under   optimally controlled vaccination schedules.}
+    \caption{Distribution of vaccines in the network under an optimally controlled vaccination schedule.}
     \label{fig:figura_con_subfiguras2}
 \end{figure}
 
-
-
 \section{Conclusions}
 
-We studied a metapopulation SIR model with vaccination, which included demographic factors and a disease that only produced temporary immunity.  We considered variable vaccination rates given by the vector $\bold{u}(t)=(u_1(t), u_2(t),\ldots, u_n(t))$, where $u_i(t)$ is the vaccination rate on the $i$-patch. We identified a property of the transmission matrix that implies the spread of the disease to all patches of the metapopulation. We show that when $\bold{u}(t)=\bold{0}$, and under certain conditions, an endemic equilibrium appears.
+We studied a metapopulation SIR model with vaccination that incorporates demographic effects and a disease that confers only temporary immunity. We considered variable vaccination rates given by the vector $\bold{u}(t)=(u_1(t),u_2(t),\ldots,u_n(t))$, where $u_i(t)$ denotes the vaccination rate in patch $i$. We identified a property of the transmission matrix that guarantees the spread of the disease to all patches of the metapopulation. We also showed that, when $\bold{u}(t)=\bold{0}$ and under suitable conditions, an endemic equilibrium exists.
 
-We address an optimal control problem where we assume that the total number of individuals vaccinated per unit of time, i.e. $\sum_{i=1}^nu_i(t)S_i(t)$, cannot exceed a known function $M(t)$, which represents the availability of vaccines per unit of time at  $t$ moment. Under this constraint, we seek the function $\bold{u}(t)$ that produces the lowest number of total infected individuals over the time interval $[0,T]$. We show that this problem has a solution and, using Pontryagin's maximum principle, we see that the optimal solution takes the form of a bang-bang control. We designed a numerical method to solve the problem, and we implemented it, using python libraries, first to a metapopulation with two patches and then to a metapopulation with a transmission matrix based on a lattice graph. The numerical results show consistency with the theoretical results.
-
+We then addressed an optimal control problem in which the total number of individuals vaccinated per unit of time, namely $\sum_{i=1}^{n}u_i(t)S_i(t)$, cannot exceed a known function $M(t)$, representing the vaccine supply rate at time $t$. Under this constraint, we looked for the function $\bold{u}(t)$ that minimizes the total number of infected individuals over the interval $[0,T]$. We proved that this problem admits a solution and, using Pontryagin's Maximum Principle, showed that the optimal control has a bang-bang structure. We also designed and implemented a numerical method, using Python libraries, first for a metapopulation with two patches and then for a metapopulation whose transmission matrix is based on a lattice graph. The numerical results are consistent with the theoretical findings.
 
 
 
